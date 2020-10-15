@@ -56,7 +56,7 @@ int main(){
 		printf("%s %s %s\n",final[i].label,final[i].mne,final[i].op);
 		char *temp_loc=cal_loc(final[i].op,final[i].mne,loc);
                 strcpy(loc,temp_loc);
-                
+        	printf("loc : %s",loc);        
 		fprintf(f3,"%s %s %s %s\n",loc,final[i].label,final[i].mne,final[i].op);
 
                 if(strcmp(final[i].mne,"START")!=0 && strcmp(final[i].mne,"END")!=0 && strcmp(final[i].mne,"WORD")!=0 && strcmp(final[i].mne,"BYTE")!=0 && strcmp(final[i].mne,"RESW")!=0 &&strcmp(final[i].mne,"RESB")!=0){

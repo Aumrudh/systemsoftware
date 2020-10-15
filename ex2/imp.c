@@ -27,8 +27,8 @@ char* cal_loc(char op[],char c[],char temp[]){
  		}
 	res=res+(j*pow(16, z));
 	z-=1;
-
-	/*if(strcmp(c,"BYTE")==0){
+	}
+	if(strcmp(c,"BYTE")==0){
 		if(op[0]=='X'){
 			res=res+strlen(op)-3;
 		}
@@ -42,13 +42,12 @@ char* cal_loc(char op[],char c[],char temp[]){
 	else if(strcmp(c,"RESB")==0){
 	        res+=atoi(op);
 	}
-	else{*/
+	else{
 	        res+=3;
-	//}
+	}
 	char *ans=(char*)malloc(5);
 	sprintf(ans,"%X",res);
 	return ans;
-	}
 }
 
 int mne_value(char mne[]){
