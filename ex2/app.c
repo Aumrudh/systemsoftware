@@ -13,20 +13,16 @@ int main(){
 	char *ptr=strtok(li,"#");
 	int flag=0;
 	while(ptr!=NULL){
-		//ptr=strtok(NULL,"#");
 		if(flag==0){
 			strcpy(la,ptr);
 			flag++;
-			//printf("%s",ptr);
 		}
 		else if(flag==1){
 			strcpy(ma,ptr);
-			//printf("%s",ptr);
 			flag++;
 		}
 		else if(flag==2){
 			strcpy(oa,ptr);
-			//printf("%s",ptr);
 		}
 		else{
 			printf("1st line over\n");
@@ -38,7 +34,6 @@ int main(){
 		if(strcmp("1000",oa)==0)
 			start_ad=1000;
 			strcpy(loc,"1000");
-		//printf("Start\n");
 	}
 	else{
 		start_ad=0;
@@ -56,16 +51,13 @@ int main(){
         }
 	fremove();
 	i++;
-	/*final[i]1=token();
-	printf("%s %s %s\n",final[i]1.label,final1.mne,final1.op);*/
 	while(strcmp(final[i-1].mne,"END")!=0){
 		final[i]=token();
 		printf("%s %s %s\n",final[i].label,final[i].mne,final[i].op);
-		//fprintf(f3,"%s %s %s\n",final[i][i].label,final[i].mne,final[i].op);
-		//final[i][i]=token();
 		char *temp_loc=cal_loc(final[i].op,final[i].mne,loc);
                 strcpy(loc,temp_loc);
-                fprintf(f3,"%s %s %s %s\n",loc,final[i].label,final[i].mne,final[i].op);
+                
+		fprintf(f3,"%s %s %s %s\n",loc,final[i].label,final[i].mne,final[i].op);
 
                 if(strcmp(final[i].mne,"START")!=0 && strcmp(final[i].mne,"END")!=0 && strcmp(final[i].mne,"WORD")!=0 && strcmp(final[i].mne,"BYTE")!=0 && strcmp(final[i].mne,"RESW")!=0 &&strcmp(final[i].mne,"RESB")!=0){
                         int temp_mne=mne_value(final[i].mne);
@@ -78,60 +70,7 @@ int main(){
 		fremove();
 		i++;
 	}
-	/*char l[20],m[20],o[20];
-        while(n!=EOF){
-                n=fgetc(f1);
-                if(n!='#'&&f==0){
-                        l[i]=(char)n;
-                        i++;
-                }
-                else if(n=='#'&&f==0){
-                        l[i]='\0';
-                        i=0;
-                        strcpy(t[j].label,l);
-                        f=1;
-                }
-                else if(n!='#'&&f==1){
-                        m[i]=(char)n;
-                        i++;
-                }
-                else if(n=='#'&&f==1){
-                        m[i]='\0';
-                        i=0;
-                        strcpy(t[j].mne,m);
-                        f=2;
-                }
-                else if(n!='#'&&f==2){
-                        o[i]=(char)n;
-                        i++;
-                }
-                else if(n=='#'&&f==2){
-                        o[i]='\0';
-                        strcpy(t[j].op,o);
-                }
-                else if(n=='\n'){
-			i=0;
-			f=0;
-			j++;
-		}
-		else{
-			printf("else");
-		}
 		
-		int temp_loc=cal_loc(t.op,t.mne,loc);
-		loc=temp_loc;
-		fprintf(f3,"%d %s %s %s\n",loc,t.label,t.mne,t.op);
-		
-		if(strcmp(t.mne,"START")!=0 && strcmp(t.mne,"END")!=0 && strcmp(t.mne,"WORD")!=0 && strcmp(t.mne,"BYTE")!=0 && strcmp(t.mne,"RESW")!=0 &&strcmp(t.mne,"RESB")!=0){
-			int temp_mne=mne_value(t.mne);
-			fprintf(f4,"%s %d\n",t.mne,temp_mne);
-		}
-		
-		if (strcmp(t.label,"")!=0){
-			fprintf(f5,"%d %s\n",loc,t.label);
-                }
-		n=fgetc(f1);
-	}*/
 	fclose(f1);
 	fclose(f3);
 	fclose(f4);
