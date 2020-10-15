@@ -102,11 +102,11 @@ int deletee(){
 		return 0;
 	}
 	while(fread(&t,sizeof(node),1,f1)!=NULL){
-		if(strcmp(t.sybm,tempSymbol) == 0){
+		if(strcmp(t.sybm,tempSymbol) != 0){
+			fwrite(&t,sizeof(node),1,f2);
 			flag=1;
-			break;
 		}
-		fwrite(&t,sizeof(node),1,f2);
+		
 	}
 	if(flag==0){
 		printf("Record not found\n");
