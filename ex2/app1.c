@@ -1,6 +1,5 @@
 #include"head.h"
 int main(){
-	char loc[20];
 	FILE *f1,*f2,*f3,*f4,*f5;
 	opnode temp;
 	char li[30],la[20],ma[20],oa[20];
@@ -37,44 +36,26 @@ int main(){
 	if(strcmp("START",ma)==0){
 		if(strcmp("1000",oa)==0)
 			start_ad=1000;
-			strcpy(loc,"1000");
 		//printf("Start\n");
 	}
 	else{
 		start_ad=0;
-		strcpy(loc,"0000");
 	}
 	printf("Assigned\n");
-	printf("Loc Start : %s\n",loc);
+	int loc=start_ad;
         int n,i=0,f=0;
-	opnode final[10];
+	opnode final1,final[10];
 	final[0]=token();
 	printf("%s %s %s\n",final[0].label,final[0].mne,final[0].op);
-        fprintf(f3,"%s %s %s %s\n",loc,final[0].label,final[0].mne,final[0].op);
-        if (strcmp(final[0].label,"")!=0){
-        	fprintf(f5,"%s %s\n",loc,final[0].label);
-        }
 	fremove();
 	i++;
-	/*final[i]1=token();
-	printf("%s %s %s\n",final[i]1.label,final1.mne,final1.op);*/
+	/*final1=token();
+	printf("%s %s %s\n",final1.label,final1.mne,final1.op);*/
 	while(strcmp(final[i-1].mne,"END")!=0){
 		final[i]=token();
 		printf("%s %s %s\n",final[i].label,final[i].mne,final[i].op);
-		//fprintf(f3,"%s %s %s\n",final[i][i].label,final[i].mne,final[i].op);
-		//final[i][i]=token();
-		char *temp_loc=cal_loc(final[i].op,final[i].mne,loc);
-                strcpy(loc,temp_loc);
-                fprintf(f3,"%s %s %s %s\n",loc,final[i].label,final[i].mne,final[i].op);
-
-                if(strcmp(final[i].mne,"START")!=0 && strcmp(final[i].mne,"END")!=0 && strcmp(final[i].mne,"WORD")!=0 && strcmp(final[i].mne,"BYTE")!=0 && strcmp(final[i].mne,"RESW")!=0 &&strcmp(final[i].mne,"RESB")!=0){
-                        int temp_mne=mne_value(final[i].mne);
-                        fprintf(f4,"%s %d\n",final[i].mne,temp_mne);
-                }
-
-                if (strcmp(final[i].label,"")!=0){
-                        fprintf(f5,"%s %s\n",loc,final[i].label);
-                }
+		//fprintf(f3,"%s %s %s\n",final[i].label,final[i].mne,final[i].op);
+		//final[i]=token();
 		fremove();
 		i++;
 	}
