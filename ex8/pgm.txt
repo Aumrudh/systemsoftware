@@ -1,0 +1,8 @@
+#include<stdio.h>
+void main()
+{
+inta,b,c;
+c=a+b;
+printf(“%d”,c);
+}
+

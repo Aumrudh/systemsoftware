@@ -1,0 +1,8 @@
+#include
+stdio
+h
+inta
+b
+c
+a
+“%d”
