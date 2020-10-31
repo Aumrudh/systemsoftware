@@ -1,7 +1,5 @@
 #include"head.h"
 
-
-
 char* cal_loc(char op[],char c[],char temp[]){
 	int len=strlen(temp);
 	int i=0,j,res=0,z=len-1;
@@ -54,7 +52,7 @@ int mne_value(char mne[]){
 
 	FILE *f=fopen("opcode.txt","r");
 	int val;
-	char temp_mne[20];//,*val=malloc(sizeof(20));
+	char temp_mne[20];
 	while(!feof(f)){
 		fscanf(f,"%s %d",temp_mne,&val);
 		if(strcmp(mne,temp_mne)==0){
@@ -63,17 +61,6 @@ int mne_value(char mne[]){
 	}
 	fclose(f);
 }
-
-
-
-
-
-
-
-
-
-
-
 opnode token(){
 	int n,i=0,f=0;
 	char l[20],m[20],o[20];
@@ -89,8 +76,6 @@ opnode token(){
 			l[i]='\0';
 			i=0;
 			strcpy(t.label,l);
-			//printf("l-%s\n",l);
-			//printf("t.l-%s\n",t.label);
 			f=1;
 		}
 		else if(n!='#'&&f==1){
@@ -110,24 +95,6 @@ opnode token(){
 		o[i]='\0';
 		strcpy(t.op,o);
 	}
-	/*FILE *f2=fopen("a.txt","w+");
-	char str[25];
-	int ln=0,c=0;
-	while (!feof(f1)) 
-        {	   
-            strcpy(str, "\0");
-            fgets(str, 25, f1);
-            if (!feof(f2)) 
-            {
-                c++;
-                if (c != ln) 
-                {
-                    fprintf(f2, "%s", str);
-                }
-            }
-        }
-	remove("alp.txt");
-	rename("a.txt","alp.txt");*/
 	fclose(f1);
 	return t;
 }
@@ -137,22 +104,18 @@ void fremove(){
 	FILE *f2=fopen("a.txt","w");
         char str[25];
         int ln=0,c=0;
-        while (!feof(f1))
-        {
+        while (!feof(f1)){
             strcpy(str, "\0");
             fgets(str, 25, f1);
-            if (!feof(f2))
-            {
-               // c++;
-                if (c != ln)
-                {
+            if (!feof(f2)){
+                if (c != ln){
                     fprintf(f2, "%s", str);
                 }
-		c++;
+				c++;
             }
         }
 	fclose(f1);
 	fclose(f2);
-        remove("alp.txt");
-        rename("a.txt","alp.txt");
+    remove("alp.txt");
+    rename("a.txt","alp.txt");
 }
