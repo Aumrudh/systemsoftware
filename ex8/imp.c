@@ -15,7 +15,7 @@ void openAndClose(){
 
 int isOperator(char c){
 	int i;
-	char op[] = {"+-*/=><"};
+	char op[] = {"#+-*/=><%"};
 	for(i=0;i<strlen(op);i++)
 		if(op[i] == c)
 			return 1;
@@ -47,7 +47,7 @@ void insspeci(char file[],char s){
 
 void insKeyVar(char key[]){
 	int i;
-	char keywrd[][15] = {"printf","scanf","int","void","main","char","float","include","stdio.h"};
+	char keywrd[][15] = {"printf","scanf","int","void","main","char","float","#include","stdio.h"};
 	char file[25]={0};
 	int flg = 1;
 	for(i=0;i<9;i++)
