@@ -1,0 +1,6 @@
+x=y
+if a<b goto M
+goto L
+M:
+i=x
+L:

@@ -5,8 +5,8 @@ main(int argc, char *argv[])
 	ESTAB es[10], e;
 	int count=0, i=3,j=0, k=0, len;
 	char pgmaddr[5], csaddr[5], name[10], temp[300], rtype[2];
-	printf("\nEXTERNAL SYMBOL TABLE\n");
-	displayTable(argv[2]);
+	//printf("\nEXTERNAL SYMBOL TABLE\n");
+	//displayTable(argv[2]);
 	fp1=fopen(argv[2],"r");
 	while(!feof(fp1))
 	{
