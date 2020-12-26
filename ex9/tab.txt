@@ -1,0 +1,6 @@
+-	id	+	*	(	)	$
+E	E->TH	-	-	E->TH	-	-
+H	-	H->+TH	-	-	H->e	H->e
+T	T->FG	-	-	T->FG	-	-
+G	-	G->e	G->*FG	-	G->e	G->e
+F	F->id	-	-	F->(E)	-	-

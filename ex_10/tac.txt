@@ -1,0 +1,13 @@
+500	temp0 = 0
+501	b = temp0
+502	temp1 = 0
+503	c = temp1
+504	if a<b goto 511
+505	temp2 = i+1;
+506	i = temp2
+507	temp3 = j+2;
+508	j = temp3
+509	temp4 = k-6;
+510	k = temp4
+511	temp5 = 9
+512	k = temp5
