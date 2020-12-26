@@ -83,12 +83,12 @@ char *substr(char str[],int l, int r)
 int main()
 {
 	FILE *f = fopen("prog.txt","r");
-	FILE *opf,*kwf,*spcf,*vf,*fpf;
+	FILE *opf,*kf,*sf,*vf,*fpf;
 	int rt,lt;
 
 	opf = fopen("operators.txt","w");
-	kwf = fopen("keywords.txt","w");
-	spcf = fopen("specialcharacters.txt","w");
+	kf = fopen("keywords.txt","w");
+	sf = fopen("specialcharacters.txt","w");
 	vf = fopen("variable.txt","w");
 	fpf = fopen("formatspecifier.txt","w");
 	
@@ -106,7 +106,7 @@ int main()
 
 		if(iskeyword(line)==1)
 		{
-			fprintf(kwf,"%s\n",line);
+			fprintf(kf,"%s\n",line);
                         //printf("\nKW:%s",line);
 			 continue;
 		}
@@ -122,7 +122,7 @@ int main()
 			f1=0;f2=0;
 			if(isspecial(line[rt])==1)
 			{	
-				fprintf(spcf,"%c\n",line[rt]);
+				fprintf(sf,"%c\n",line[rt]);
 				//printf("\nSP:%c",line[rt]);	
 			}
 			else
@@ -160,7 +160,7 @@ int main()
 
 			if(iskeyword(str)==1)
 			{	
-				fprintf(kwf,"%s\n",str);
+				fprintf(kf,"%s\n",str);
 				//printf("\nKW:%s",str);
 				if(strcmp(str,"printf")==0 || strcmp(str,"scanf")==0)
 				{
@@ -188,8 +188,8 @@ int main()
 	}
 	fclose(f);
 	fclose(opf);
-	fclose(kwf);
-	fclose(spcf);
+	fclose(kf);
+	fclose(sf);
 	fclose(vf);
 	fclose(fpf);
 	printf("Seperated All Successfully\n");
