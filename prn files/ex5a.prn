@@ -1,0 +1,226 @@
+IMPLEMENTATION OF BITMASK 
+
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+int main(){
+    FILE *fin;
+    char fn[12]={0};
+    printf("Enter the File Name with the Extension : ");
+    scanf("%s",&fn);
+    if((fin=fopen(fn,"r+"))==NULL){
+        printf("Error! opening file");
+        return(-1);
+    }
+    int hex,hex1,h, length, i, j, k, y, z, ans,Bm;
+    char Head[22], Name[7], Len[6], Text[81], Adr[6], Adr1[7]={0}, Leng[3];
+    fscanf(fin, "%[^\n]", Head);
+    printf("Enter the Program Name : ");
+    scanf("%s",&Name);
+    for(i=0; i<strlen(Name); i++){
+        if(Name[i]!=Head[2+i]){
+            printf("File Name is Incorrect");
+            return(-1);
+        }
+    }
+    printf("Enter the Program Length : ");
+        scanf("%s",&Len);
+        for(i=0; i<strlen(Len); i++){
+                if(Len[i]!=Head[17+i]){
+                        printf("Program Length is Incorrect");
+                        return(-1);
+                }
+        }
+    printf("Enter the Modification Address : ");
+    scanf("%s",&Adr1);
+    sscanf(Adr1,"%X",&hex1);
+
+A:  fscanf(fin,"%s",Text);
+    if(Text[0]=='E')
+        goto LAST;
+    for(i=0; i<6; i++)
+        Adr[i]= Text[2+i];
+    sscanf(Adr,"%X",&hex);
+    Leng[0]= Text[9];
+    Leng[1]= Text[10];
+    sscanf(Leng,"%X",&length);
+    //T^001000^1E^FFC^141033^482039^001036^281030^301015^482061^3C1003^00102A^0C1039^00102D
+    char BM[4]={0},BMR[13]={0};
+    BM[0]= Text[12];
+    BM[1]= Text[13];
+    BM[2]= Text[14];
+    sscanf(BM,"%X",&Bm);
+    k=0;
+    for(j=11; j>=0; j--){
+        ans= Bm>>j;
+        if(ans&1)
+            BMR[k]='1';
+        else
+            BMR[k]='0';
+        k++;
+    }
+    char  TexR[7]={0};
+    z=0;
+    for(i=16; i<strlen(Text); i++){
+        k=0;
+        while(Text[i]!='^'){
+            TexR[k]=Text[i];
+            k++;
+            i++;
+        }
+        if(BMR[z]=='1'){
+            sscanf(TexR,"%X",&h);
+            h+=hex1; //add the modification address to original address
+            sprintf(TexR,"%X",h);
+        }
+        z++;
+        for(y=0; y<strlen(TexR);y++){
+            printf("%X\t",(hex+hex1));
+            hex++;
+            Leng[0]=TexR[y];
+            Leng[1]=TexR[y++];
+            sscanf(Leng,"%X",&k);
+            for(j=7; j>=0; j--){
+                ans= k>>j;
+                if(ans&1)
+                    printf("1");
+                else
+                    printf("0");
+            }
+            printf("\n");
+        }
+    }
+    goto A;
+LAST:   return 0;
+}
+
+ brecord.txt
+H^COPY   ^001000^00107A
+T^001000^1E^FFC^141033^482039^001036^281030^301015^482061^3C1003^00102A^0C1039^00102D
+T^00101E^15^D00^0C1036^482061^081033^4C0000^454F46^000003^000000
+T^002039^1E^FFC^041030^001030^E0205D^30203F^D8205D^281030^302057^541039^2C205E^38203F
+T^002057^1C^8F0^101036^4C0000^F1^001000^041030^E02079^302064^501039^DC2079^2C1036
+T^002073^07^800^382064^4C0000^05
+E^001000
+
+
+[17bit049@mepcolinux ExNo5]$./a.out
+Enter the File Name with the Extension : brecorrd.txt
+Enter the Program Name : COPY
+Enter the Program Length : 0019 07A
+Enter the Modification Address : 2000
+3000    0001 0100
+3001    0011 0000
+3002    0011 0011
+3003    01001000
+3004    01000000
+3005    00111001
+3006    00110000
+3007    00110110
+3008    00101000
+3009    00110000
+300A    00110000
+300B    00110000
+300C    00110000
+300D    00010101
+300E    01001000
+300F    01000000
+3010    01100001
+3011    00111100
+3012    00110000
+3013    00000011
+3014    00110000
+3015    00101010
+3016    11000011
+3017    00000011
+3018    00001001
+3019    00000000
+301A    00010000
+301B    00101101
+301E    11000011
+301F    00000011
+3020    00000110
+3021    01001000
+3022    01000000
+3023    01100001
+3024    00001000
+3025    00010000
+3026    00110011
+3027    01001100
+3028    00100000
+3029    00000000
+302A    01000101
+302B    01001111
+302C    01000110
+302D    00000000
+302E    00000000
+302F    00000011
+3030    00000000
+3031    00000000
+3032    00000000
+4039    01000011
+403A    00000011
+403B    00000000
+403C    00110000
+403D    00110000
+403E    11100000
+403F    01000000
+4040    01011101
+4041    00110000
+4042    01000000
+4043    00111111
+4044    11011000
+4045    01000000
+4046    01011101
+4047    00101000
+4048    00110000
+4049    00110000
+404A    00110000
+404B    01000000
+404C    01010111
+404D    01010100
+404E    00110000
+404F    00111001
+4050    00101100
+4051    01000000
+4052    01011110
+4053    00111000
+4054    00100000
+4055    00111111
+4057    00010000
+4058    00110000
+4059    00110110
+405A    01001100
+405B    00000000
+405C    00000000
+405D    11110001
+405E    00000000
+405F    00000000
+4060    00000000
+4061    00010000
+4062    00000000
+4063    01000011
+4064    00000011
+4065    00000000
+4066    11100000
+4067    01000000
+4068    01111001
+4069    00110000
+406A    01000000
+406B    01100100
+406C    01010000
+406D    00110000
+406E    00111001
+406F    11011100
+4070    00100000
+4071    01111001
+4072    00101100
+4073    00010000
+4074    00110110
+4073    00111000
+4074    01000000
+4075    01100100
+4076    01001100
+4077    00000000
+4078    00000000
+4079    00000101
